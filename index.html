@@ -1,6 +1,21 @@
-<div id="drop-area">
-    <h3>Drag & Drop Your Profile Picture Here</h3>
-    <input type="file" id="fileInput" />
-    <img id="preview" />
-    <img id="border" src="border.png" style="display:none;" />
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Picture Border App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="drop-area">
+        <h3>Drag & Drop Your Profile Picture Here</h3>
+        <input type="file" id="fileInput" />
+        <div id="image-container">
+            <img id="preview" />
+            <img id="border" src="border.png" style="display:none;" />
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
