@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('fileInput');
     const preview = document.getElementById('preview');
     const border = document.getElementById('border');
+    const canvas = document.getElementById('canvas');
+    const combinedImage = document.getElementById('combined');
+    const ctx = canvas.getContext('2d');
 
     // Prevent default drag behaviors
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -30,14 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleDrop(e) {
         const dt = e.dataTransfer;
         const file = dt.files[0];
-        console.log("File dropped:", file);
         handleFile(file);
     }
 
     // Handle selected files
     fileInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
-        console.log("File selected:", file);
         handleFile(file);
     });
 
@@ -45,10 +46,32 @@ document.addEventListener('DOMContentLoaded', function() {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = function() {
-                preview.src = reader.result;
-                console.log("Image preview set:", preview.src);
-                border.style.display = 'block';
-                console.log("Border display set to block.");
+                const img = new Image();
+                img.onload = function() {
+                    // Set canvas size to match the image size
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+
+                    // Draw the uploaded image onto the canvas
+                    ctx.drawImage(img, 0, 0);
+
+                    // Load and draw the border image on top of the uploaded image
+                    const borderImg = new Image();
+                    borderImg.crossOrigin = "anonymous"; // Enable CORS request
+                    borderImg.src = border.src;
+                    borderImg.onload = function() {
+                        ctx.drawImage(borderImg, 0, 0, canvas.width, canvas.height);
+
+                        // Convert the canvas to an image and display it
+                        combinedImage.src = canvas.toDataURL('image/png');
+                        combinedImage.style.display = 'block';
+
+                        // Optionally hide the individual images
+                        preview.style.display = 'none';
+                        border.style.display = 'none';
+                    };
+                };
+                img.src = reader.result;
             };
             reader.readAsDataURL(file);
         }
