@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Highlight drop area when item is dragged over it
     ['dragenter', 'dragover'].forEach(eventName => {
-        dropArea.addEventListener(eventName, () => dropArea.classList.add('highlight'), false);
+        dropArea.classList.add('highlight');
     });
 
     ['dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, () => dropArea.classList.remove('highlight'), false);
+        dropArea.classList.remove('highlight');
     });
 
     // Handle dropped files
