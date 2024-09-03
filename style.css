@@ -8,6 +8,10 @@
     margin: auto;
 }
 
+#drop-area.highlight {
+    border-color: blue;
+}
+
 #image-container {
     position: relative;
     width: 100%;
