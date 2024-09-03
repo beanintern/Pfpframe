@@ -30,12 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleDrop(e) {
         const dt = e.dataTransfer;
         const file = dt.files[0];
+        console.log("File dropped:", file);
         handleFile(file);
     }
 
     // Handle selected files
     fileInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
+        console.log("File selected:", file);
         handleFile(file);
     });
 
@@ -44,7 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const reader = new FileReader();
             reader.onloadend = function() {
                 preview.src = reader.result;
+                console.log("Image preview set:", preview.src);
                 border.style.display = 'block';
+                console.log("Border display set to block.");
             };
             reader.readAsDataURL(file);
         }
