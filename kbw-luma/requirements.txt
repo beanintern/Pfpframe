@@ -1,0 +1,5 @@
+requests>=2.31
+PyYAML>=6.0
+# Optional: lets Claude answer custom registration questions you didn't pre-fill
+anthropic>=0.60
+pydantic>=2

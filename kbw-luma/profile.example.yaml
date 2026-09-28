@@ -1,0 +1,37 @@
+# Copy to profile.yaml and fill in. profile.yaml is gitignored.
+
+name: "Your Name"
+first_name: "Your"
+last_name: "Name"
+email: "you@example.com"
+phone_number: "+821012345678"   # E.164 format; leave "" if you don't want to share
+
+company: "Acme Labs"
+job_title: "Founder"
+twitter: "yourhandle"
+linkedin: "https://www.linkedin.com/in/yourhandle"
+telegram: "yourhandle"
+github: "yourhandle"
+instagram: ""
+youtube: ""
+website: "https://example.com"
+eth_address: "0x..."             # only sent if an event requires it
+solana_address: ""
+
+# Used as context when Claude answers custom questions (and as a fallback
+# for "tell us about yourself"-style questions).
+bio: >
+  Founder of Acme Labs, building onchain payments infra. Previously at X.
+  In Seoul for KBW to meet builders, investors and partners.
+
+# Keyword -> answer overrides for custom questions. The key is a
+# case-insensitive regex matched against the question label; first match wins.
+# For dropdown/select questions the answer should be one of the options
+# (the closest option is picked if it isn't an exact match).
+answers:
+  "소속|company|organi[sz]ation|project|team": "Acme Labs"
+  "직군|role|position|title|occupation": "Founder"
+  "why.*(attend|join|interested)|참석.*이유|motivation": "To meet builders and partners in the Korean crypto ecosystem during KBW."
+  "how did you hear|어떻게.*알게": "Luma / KBW side events calendar"
+  "telegram": "@yourhandle"
+  "wallet|address": "0x..."
